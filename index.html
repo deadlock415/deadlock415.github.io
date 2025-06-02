@@ -1,403 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ Brain Glitch Portfolio ⚡</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>⚡ Brain Glitch Portfolio ⚡</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon: #00ff00;
+      --neon-light: #66ff66;
+      --bg-dark: #000000;
+      --bg-card: #1a1a1a;
+    }
 
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background: #000000;
-            color: #00ff00;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .intro-screen {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000000;
-            color: #00ff00;
-            font-size: 2rem;
-            z-index: 50;
-            animation: pulse 1s infinite;
-            text-shadow: 0 0 10px #00ff00;
-        }
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg-dark);
+      color: var(--neon);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        .main-content {
-            padding: 1.5rem;
-            opacity: 0;
-            animation: fadeIn 0.5s ease-in-out 2.5s forwards;
-        }
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-dark);
+      font-size: 2rem;
+      z-index: 50;
+      animation: pulse 1s infinite;
+      text-shadow: 0 0 10px var(--neon);
+    }
 
-        .main-title {
-            font-size: 3rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 2.5rem;
-            text-shadow: 0 0 15px #00ff00;
-            animation: glow 1.5s infinite alternate;
-        }
+    main {
+      padding: 1.5rem;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in-out 2.5s forwards;
+    }
 
-        .profiles-grid {
-            display: grid;
-            gap: 1.5rem;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      text-shadow: 0 0 15px var(--neon);
+      animation: glow 1.5s infinite alternate;
+    }
 
-        .profile-card {
-            background: #1a1a1a;
-            border: 2px solid #00ff00;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideUp 0.4s ease-in-out forwards;
-        }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      max-width: 1200px;
+      margin: auto;
+    }
 
-        .profile-card:hover {
-            border-color: #00ff00;
-            transform: scale(1.02);
-            box-shadow: 0 0 35px rgba(0, 255, 0, 0.5);
-        }
+    .card {
+      background: var(--bg-card);
+      border: 2px solid var(--neon);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
+      transition: all 0.3s ease;
+      animation: slideUp 0.4s ease-in-out forwards;
+    }
 
-        .profile-card:nth-child(1) { animation-delay: 2.7s; }
-        .profile-card:nth-child(2) { animation-delay: 2.85s; }
-        .profile-card:nth-child(3) { animation-delay: 3s; }
-        .profile-card:nth-child(4) { animation-delay: 3.15s; }
-        .profile-card:nth-child(5) { animation-delay: 3.3s; }
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 35px rgba(0, 255, 0, 0.5);
+    }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
-        }
+    .card:nth-child(n) { animation-delay: calc(2.5s + 0.15s * var(--i)); }
 
-        .card-icon {
-            color: #00ff00;
-            font-size: 1.75rem;
-        }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
 
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #00ff00;
-        }
+    .icon {
+      font-size: 1.75rem;
+    }
 
-        .card-tagline {
-            color: #66ff66;
-            font-style: italic;
-            margin-bottom: 0.25rem;
-        }
+    .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-        .card-desc {
-            color: #ccffcc;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
+    .tagline {
+      color: var(--neon-light);
+      font-style: italic;
+      margin-bottom: 0.25rem;
+    }
 
-        .visit-btn {
-            background: #00ff00;
-            color: #000000;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-family: inherit;
-        }
+    .desc {
+      color: #ccffcc;
+      margin-bottom: 1rem;
+    }
 
-        .visit-btn:hover {
-            background: #66ff66;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-        }
+    .btn {
+      background: var(--neon);
+      color: #000;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
 
-        .tech-stack {
-            margin-top: 3rem;
-            text-align: center;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    .btn:hover {
+      background: var(--neon-light);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+    }
 
-        .tech-stack h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: #00ff00;
-        }
+    .tech {
+      margin-top: 3rem;
+      text-align: center;
+    }
 
-        .tech-stack p {
-            color: #66ff66;
-        }
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #008800;
+      font-size: 0.9rem;
+    }
 
-        .footer {
-            margin-top: 3rem;
-            text-align: center;
-            color: #008800;
-            font-size: 0.875rem;
-        }
+    .footer a {
+      color: var(--neon);
+    }
 
-        .footer a {
-            color: #00ff00;
-            text-decoration: underline;
-        }
+    /* Matrix effect */
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      opacity: 0.1;
+      pointer-events: none;
+    }
 
-        .footer a:hover {
-            color: #66ff66;
-        }
+    .matrix-column {
+      position: absolute;
+      top: -100vh;
+      font-size: 14px;
+      color: var(--neon);
+      animation: matrixRain linear infinite;
+    }
 
-        /* Matrix rain effect */
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.1;
-        }
+    /* Animations */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
 
-        .matrix-column {
-            position: absolute;
-            top: -100vh;
-            font-size: 14px;
-            color: #00ff00;
-            animation: matrixRain linear infinite;
-        }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px var(--neon); }
+      to { text-shadow: 0 0 25px var(--neon); }
+    }
 
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
-            to { text-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 25px #00ff00; }
-        }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    @keyframes matrixRain {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
+    }
 
-        @keyframes slideUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-
-        @keyframes matrixRain {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(100vh); }
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2rem;
-            }
-            
-            .intro-screen {
-                font-size: 1.5rem;
-            }
-            
-            .profiles-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .main-content {
-                padding: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 1.5rem;
-            }
-            
-            .intro-screen {
-                font-size: 1.2rem;
-                padding: 1rem;
-                text-align: center;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Matrix background effect -->
-    <div class="matrix-bg" id="matrixBg"></div>
+  <!-- Matrix Background -->
+  <div class="matrix-bg" id="matrixBg"></div>
 
-    <!-- Intro screen -->
-    <div class="intro-screen" id="introScreen">
-        <p>⚡ Initiating Brain Glitch ⚡</p>
-    </div>
+  <!-- Intro Screen -->
+  <div class="intro-screen" id="introScreen">⚡ Initiating Brain Glitch ⚡</div>
 
-    <!-- Main content -->
-    <main class="main-content" id="mainContent">
-        <h1 class="main-title">⚡ Brain Glitch Portfolio ⚡</h1>
+  <!-- Main Content -->
+  <main>
+    <h1>⚡ Brain Glitch Portfolio ⚡</h1>
+    <section class="grid">
+      <!-- Cards -->
+      <div class="card" style="--i: 1">
+        <div class="card-header"><span class="icon">🎥</span><span class="title">BrainGlitch (YouTube)</span></div>
+        <p class="tagline">Decode AI with Depth</p>
+        <p class="desc">Exploring Gen AI, Tech, and Consciousness.</p>
+        <a href="https://youtube.com/@BrainGlitch" class="btn" target="_blank">Visit →</a>
+      </div>
 
-        <section class="profiles-grid">
-            <div class="profile-card">
-                <div class="card-header">
-                    <span class="card-icon">🎥</span>
-                    <h2 class="card-title">BrainGlitch (YouTube)</h2>
-                </div>
-                <p class="card-tagline">Decode AI with Depth</p>
-                <p class="card-desc">Exploring Gen AI, Tech, and Consciousness.</p>
-                <a href="https://youtube.com/@BrainGlitch" target="_blank" rel="noopener noreferrer" class="visit-btn">Visit →</a>
-            </div>
+      <div class="card" style="--i: 2">
+        <div class="card-header"><span class="icon">🎨</span><span class="title">Art.midjourney.ai (Instagram)</span></div>
+        <p class="tagline">Brushstrokes by Algorithms</p>
+        <p class="desc">AI-generated visual art and reels.</p>
+        <a href="https://instagram.com/art.midjourney.ai" class="btn" target="_blank">Visit →</a>
+      </div>
 
-            <div class="profile-card">
-                <div class="card-header">
-                    <span class="card-icon">🎨</span>
-                    <h2 class="card-title">Art.midjourney.ai (Instagram)</h2>
-                </div>
-                <p class="card-tagline">Brushstrokes by Algorithms</p>
-                <p class="card-desc">AI-generated visual art and reels.</p>
-                <a href="https://instagram.com/art.midjourney.ai" target="_blank" rel="noopener noreferrer" class="visit-btn">Visit →</a>
-            </div>
+      <div class="card" style="--i: 3">
+        <div class="card-header"><span class="icon">🧘</span><span class="title">Conscious Being 369 (Instagram)</span></div>
+        <p class="tagline">Words that Awaken</p>
+        <p class="desc">Spiritual and thought-provoking quote posts.</p>
+        <a href="https://instagram.com/conscious_being_369" class="btn" target="_blank">Visit →</a>
+      </div>
 
-            <div class="profile-card">
-                <div class="card-header">
-                    <span class="card-icon">🧘</span>
-                    <h2 class="card-title">Conscious Being 369 (Instagram)</h2>
-                </div>
-                <p class="card-tagline">Words that Awaken</p>
-                <p class="card-desc">Spiritual and thought-provoking quote posts.</p>
-                <a href="https://instagram.com/conscious_being_369" target="_blank" rel="noopener noreferrer" class="visit-btn">Visit →</a>
-            </div>
+      <div class="card" style="--i: 4">
+        <div class="card-header"><span class="icon">✍️</span><span class="title">LiveFree112 (Wattpad)</span></div>
+        <p class="tagline">Tales from the Soul</p>
+        <p class="desc">Short stories on love, life, and transformation.</p>
+        <a href="https://wattpad.com/user/LiveFree112" class="btn" target="_blank">Visit →</a>
+      </div>
 
-            <div class="profile-card">
-                <div class="card-header">
-                    <span class="card-icon">✍️</span>
-                    <h2 class="card-title">LiveFree112 (Wattpad)</h2>
-                </div>
-                <p class="card-tagline">Tales from the Soul</p>
-                <p class="card-desc">Short stories on love, life, and transformation.</p>
-                <a href="https://wattpad.com/user/LiveFree112" target="_blank" rel="noopener noreferrer" class="visit-btn">Visit →</a>
-            </div>
+      <div class="card" style="--i: 5">
+        <div class="card-header"><span class="icon">💻</span><span class="title">Deadlock415 (GitHub)</span></div>
+        <p class="tagline">Code that Glitches the Matrix</p>
+        <p class="desc">AI, automation, and open-source projects.</p>
+        <a href="https://github.com/Deadlock415" class="btn" target="_blank">Visit →</a>
+      </div>
+    </section>
 
-            <div class="profile-card">
-                <div class="card-header">
-                    <span class="card-icon">💻</span>
-                    <h2 class="card-title">Deadlock415 (GitHub)</h2>
-                </div>
-                <p class="card-tagline">Code that Glitches the Matrix</p>
-                <p class="card-desc">AI, automation, and open-source projects.</p>
-                <a href="https://github.com/Deadlock415" target="_blank" rel="noopener noreferrer" class="visit-btn">Visit →</a>
-            </div>
-        </section>
+    <section class="tech">
+      <h3>🚀 Tech Stack</h3>
+      <p>Python, Ollama, MidJourney, Next.js, FastAPI, Stable Diffusion, Framer Motion</p>
+    </section>
 
-        <section class="tech-stack">
-            <h3>🚀 Tech Stack</h3>
-            <p>Python, Ollama, MidJourney, Next.js, FastAPI, Stable Diffusion, Framer Motion</p>
-        </section>
+    <footer class="footer">
+      Made with 💚 | Free Hosting via
+      <a href="https://pages.github.com" target="_blank">GitHub Pages</a> or
+      <a href="https://vercel.com" target="_blank">Vercel</a>
+    </footer>
+  </main>
 
-        <footer class="footer">
-            Made with 💚 | Free Hosting via 
-            <a href="https://pages.github.com" target="_blank">GitHub Pages</a> or 
-            <a href="https://vercel.com" target="_blank">Vercel</a>
-        </footer>
-    </main>
+  <!-- Script -->
+  <script>
+    // Intro
+    setTimeout(() => {
+      document.getElementById('introScreen').style.display = 'none';
+    }, 2500);
 
-    <script>
-        // Hide intro screen after 2.5 seconds
-        setTimeout(() => {
-            document.getElementById('introScreen').style.display = 'none';
-        }, 2500);
+    // Matrix Effect
+    const matrix = () => {
+      const bg = document.getElementById('matrixBg');
+      const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()';
+      const cols = Math.floor(window.innerWidth / 20);
 
-        // Create matrix rain effect
-        function createMatrixRain() {
-            const matrixBg = document.getElementById('matrixBg');
-            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()';
-            const columns = Math.floor(window.innerWidth / 20);
+      for (let i = 0; i < cols; i++) {
+        const col = document.createElement('div');
+        col.className = 'matrix-column';
+        col.style.left = i * 20 + 'px';
+        col.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        col.style.animationDelay = `${Math.random() * 2}s`;
 
-            for (let i = 0; i < columns; i++) {
-                const column = document.createElement('div');
-                column.className = 'matrix-column';
-                column.style.left = i * 20 + 'px';
-                column.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                column.style.animationDelay = Math.random() * 2 + 's';
-                
-                let columnText = '';
-                for (let j = 0; j < 20; j++) {
-                    columnText += chars.charAt(Math.floor(Math.random() * chars.length)) + '<br>';
-                }
-                column.innerHTML = columnText;
-                
-                matrixBg.appendChild(column);
-            }
+        let text = '';
+        for (let j = 0; j < 20; j++) {
+          text += chars.charAt(Math.floor(Math.random() * chars.length)) + '<br>';
         }
 
-        // Initialize matrix effect after intro
-        setTimeout(() => {
-            createMatrixRain();
-        }, 2500);
+        col.innerHTML = text;
+        bg.appendChild(col);
+      }
+    };
 
-        // Add click ripple effect to buttons
-        document.querySelectorAll('.visit-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const ripple = document.createElement('div');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.cssText = `
-                    position: absolute;
-                    width: ${size}px;
-                    height: ${size}px;
-                    left: ${x}px;
-                    top: ${y}px;
-                    background: rgba(0,255,0,0.3);
-                    border-radius: 50%;
-                    transform: scale(0);
-                    animation: ripple 0.6s ease-out;
-                    pointer-events: none;
-                `;
-                
-                this.style.position = 'relative';
-                this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
-
-        // Add ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to { transform: scale(2); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+    setTimeout(matrix, 2500);
+  </script>
 </body>
 </html>
