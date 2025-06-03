@@ -9,7 +9,6 @@
     :root {
       --neon: #00ff00;
       --neon-light: #66ff66;
-      --bg-dark: #000000;
     }
 
     * {
@@ -22,7 +21,7 @@
       font-family: 'JetBrains Mono', monospace;
       background: url('./images/background.png') no-repeat center center fixed;
       background-size: cover;
-      color: var(--neon);
+      color: #ffffff;
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
@@ -34,7 +33,6 @@
       inset: 0;
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       z-index: 0;
     }
 
@@ -44,7 +42,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg-dark);
+      background: black;
       font-size: 2rem;
       z-index: 50;
       animation: pulse 1s infinite;
@@ -76,6 +74,7 @@
     }
 
     .card {
+      aspect-ratio: 1 / 1;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -84,20 +83,26 @@
       padding: 1.5rem;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
       transition: all 0.3s ease;
       animation: slideUp 0.4s ease-in-out forwards;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(6px);
       background-blend-mode: overlay;
+      color: #ffffff;
+      text-align: center;
     }
 
     .card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
       border-radius: 12px;
       z-index: 0;
     }
@@ -107,20 +112,12 @@
       z-index: 1;
     }
 
-    .card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 35px rgba(0, 255, 0, 0.5);
-    }
-
-    .card:nth-child(n) {
-      animation-delay: calc(2.5s + 0.15s * var(--i));
-    }
-
     .card-header {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.5rem;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }
 
     .icon {
@@ -130,16 +127,17 @@
     .title {
       font-size: 1.5rem;
       font-weight: bold;
+      color: #ffffff;
     }
 
     .tagline {
-      color: var(--neon-light);
+      color: #aaffaa;
       font-style: italic;
       margin-bottom: 0.25rem;
     }
 
     .desc {
-      color: #ccffcc;
+      color: #eeeeee;
       margin-bottom: 1rem;
     }
 
@@ -207,46 +205,53 @@
   <main>
     <h1>⚡ Brain Glitch Portfolio ⚡</h1>
     <section class="grid">
-      <div class="card" style="--i: 1; background-image: url('./images/poster1.png');">
+      <div class="card" style="background-image: url('./images/poster1.png');">
         <div class="card-header"><span class="icon">🎥</span><span class="title">BrainGlitch (YouTube)</span></div>
         <p class="tagline">Decode AI with Depth</p>
         <p class="desc">Exploring Gen AI, Tech, and Consciousness.</p>
         <a href="https://youtube.com/@BrainGlitch" class="btn" target="_blank">Visit →</a>
       </div>
 
-      <div class="card" style="--i: 2; background-image: url('./images/poster2.png');">
+      <div class="card" style="background-image: url('./images/poster2.png');">
         <div class="card-header"><span class="icon">🎨</span><span class="title">Art.midjourney.ai (Instagram)</span></div>
         <p class="tagline">Brushstrokes by Algorithms</p>
         <p class="desc">AI-generated visual art and reels.</p>
         <a href="https://instagram.com/art.midjourney.ai" class="btn" target="_blank">Visit →</a>
       </div>
 
-      <div class="card" style="--i: 3; background-image: url('./images/poster3.png');">
+      <div class="card" style="background-image: url('./images/poster3.png');">
         <div class="card-header"><span class="icon">🧘</span><span class="title">Conscious Being 369 (Instagram)</span></div>
         <p class="tagline">Words that Awaken</p>
         <p class="desc">Spiritual and thought-provoking quote posts.</p>
         <a href="https://instagram.com/conscious_being_369" class="btn" target="_blank">Visit →</a>
       </div>
 
-      <div class="card" style="--i: 4; background-image: url('./images/poster4.png');">
+      <div class="card" style="background-image: url('./images/poster4.png');">
         <div class="card-header"><span class="icon">✍️</span><span class="title">LiveFree112 (Wattpad)</span></div>
         <p class="tagline">Tales from the Soul</p>
         <p class="desc">Short stories on love, life, and transformation.</p>
         <a href="https://wattpad.com/user/LiveFree112" class="btn" target="_blank">Visit →</a>
       </div>
 
-      <div class="card" style="--i: 5; background-image: url('./images/poster5.png');">
+      <div class="card" style="background-image: url('./images/poster5.png');">
         <div class="card-header"><span class="icon">💻</span><span class="title">Deadlock415 (GitHub)</span></div>
         <p class="tagline">Code that Glitches the Matrix</p>
         <p class="desc">AI, automation, and open-source projects.</p>
         <a href="https://github.com/Deadlock415" class="btn" target="_blank">Visit →</a>
       </div>
 
-      <div class="card" style="--i: 6; background-image: url('./images/poster6.png');">
+      <div class="card" style="background-image: url('./images/poster6.png');">
         <div class="card-header"><span class="icon">📿</span><span class="title">Conscious Being 369 (Channel)</span></div>
         <p class="tagline">Awareness | Morals | Meaning</p>
         <p class="desc">Conscious stories that add value — inspired by life, written to awaken.</p>
         <a href="https://youtube.com/@consciousbeing369/" class="btn" target="_blank">Visit →</a>
+      </div>
+
+      <div class="card" style="background-image: url('./images/poster7.png');">
+        <div class="card-header"><span class="icon">📝</span><span class="title">BrainGlitch (Medium)</span></div>
+        <p class="tagline">Thoughts Worth Reading</p>
+        <p class="desc">Articles on Gen AI, N8N automation, spirituality, and anime mystery breakdowns.</p>
+        <a href="https://brainglitch.medium.com/" class="btn" target="_blank">Visit →</a>
       </div>
     </section>
 
