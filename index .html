@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>⚡ Brain Glitch Portfolio ⚡</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon: #00ff00;
+      --neon-light: #66ff66;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: url('./images/background.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      cursor: url('https://cur.cursors-4u.net/cursors/cur-13/cur1151.cur'), auto;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      z-index: 0;
+    }
+
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: black;
+      font-size: 2rem;
+      z-index: 50;
+      animation: pulse 1s infinite;
+      text-shadow: 0 0 10px var(--neon);
+    }
+
+    main {
+      padding: 1.5rem;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in-out 2.5s forwards;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      text-shadow: 0 0 15px var(--neon);
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid var(--neon);
+      width: 100%;
+      max-width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      animation: typing 5s steps(30, end) infinite, blink 0.7s step-end infinite alternate;
+    }
+
+    @keyframes typing {
+      0% { width: 0; }
+      50% { width: 100%; }
+      70% { width: 100%; }
+      100% { width: 0; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      height: 100%;
+      min-height: 350px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 2px solid var(--neon);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
+      transition: transform 0.3s ease;
+      backdrop-filter: blur(6px);
+      background-blend-mode: overlay;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 35px rgba(0, 255, 0, 0.5);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(2px);
+      border-radius: 12px;
+      z-index: 0;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .icon {
+      font-size: 1.75rem;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .tagline {
+      color: #aaffaa;
+      font-style: italic;
+      margin-bottom: 0.25rem;
+    }
+
+    .desc {
+      color: #eeeeee;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      background: var(--neon);
+      color: #000;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--neon-light);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+    }
+
+    .ribbon {
+      position: absolute;
+      top: 12px;
+      right: -30px;
+      background: var(--neon);
+      color: #000;
+      transform: rotate(45deg);
+      padding: 4px 16px;
+      font-weight: bold;
+      box-shadow: 0 0 5px var(--neon);
+      font-size: 0.75rem;
+      z-index: 2;
+    }
+
+    .tech {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #008800;
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: var(--neon);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px var(--neon); }
+      to { text-shadow: 0 0 25px var(--neon); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="intro-screen" id="introScreen">⚡ Initiating Brain Glitch ⚡</div>
+  <main>
+    <h1>⚡ Brain Glitch Portfolio ⚡</h1>
+    <section class="grid">
+      <div class="card" style="background-image: url('./images/poster1.png');">
+        <div class="card-header"><span class="icon">🎥</span><span class="title">BrainGlitch (YouTube)</span></div>
+        <p class="tagline">Decode AI with Depth</p>
+        <p class="desc">Exploring Gen AI, Tech, and Consciousness.</p>
+        <a href="https://youtube.com/@BrainGlitch" class="btn" target="_blank">Visit →</a>
+      </div>
+
+      <div class="card" style="background-image: url('./images/poster2.png');">
+        <div class="card-header"><span class="icon">🎨</span><span class="title">Art.midjourney.ai (Instagram)</span></div>
+        <p class="tagline">Brushstrokes by Algorithms</p>
+        <p class="desc">AI-generated visual art and reels.</p>
+        <a href="https://instagram.com/art.midjourney.ai" class="btn" target="_blank">Visit →</a>
+      </div>
+
+      <div class="card" style="background-image: url('./images/poster3.png');">
+        <div class="card-header"><span class="icon">🧘</span><span class="title">Conscious Being 369 (Instagram)</span></div>
+        <p class="tagline">Words that Awaken</p>
+        <p class="desc">Spiritual and thought-provoking quote posts.</p>
+        <a href="https://instagram.com/conscious_being_369" class="btn" target="_blank">Visit →</a>
+      </div>
+
+      <div class="card" style="background-image: url('./images/poster4.png');">
+        <div class="card-header"><span class="icon">✍️</span><span class="title">LiveFree112 (Wattpad)</span></div>
+        <p class="tagline">Tales from the Soul</p>
+        <p class="desc">Short stories on love, life, and transformation.</p>
+        <a href="https://wattpad.com/user/LiveFree112" class="btn" target="_blank">Visit →</a>
+      </div>
+
+      <div class="card" style="background-image: url('./images/poster5.png');">
+        <div class="card-header"><span class="icon">💻</span><span class="title">Deadlock415 (GitHub)</span></div>
+        <p class="tagline">Code that Glitches the Matrix</p>
+        <p class="desc">AI, automation, and open-source projects.</p>
+        <a href="https://github.com/Deadlock415" class="btn" target="_blank">Visit →</a>
+      </div>
+
+      <div class="card" style="background-image: url('./images/poster6.png');">
+        <div class="card-header"><span class="icon">📿</span><span class="title">Conscious Being 369 (Channel)</span></div>
+        <p class="tagline">Awareness | Morals | Meaning</p>
+        <p class="desc">Conscious stories that add value — inspired by life, written to awaken.</p>
+        <a href="https://youtube.com/@consciousbeing369/" class="btn" target="_blank">Visit →</a>
+      </div>
+
+      <div class="card" style="background-image: url('./images/poster7.png');">
+        <div class="card-header"><span class="icon">📝</span><span class="title">BrainGlitch (Medium)</span></div>
+        <p class="tagline">Thoughts Worth Reading</p>
+        <p class="desc">Articles on Gen AI, N8N automation, spirituality, and anime mystery breakdowns.</p>
+        <a href="https://brainglitch.medium.com/" class="btn" target="_blank">Visit →</a>
+      </div>
+    </section>
+    <section class="tech">
+      <h3>🚀 Tech Stack</h3>
+      <p>Python, Ollama, MidJourney, Next.js, FastAPI, Stable Diffusion, Framer Motion</p>
+    </section>
+    <footer class="footer">
+      Made with 💚 | Free Hosting via
+      <a href="https://pages.github.com" target="_blank">GitHub Pages</a> or
+      <a href="https://vercel.com" target="_blank">Vercel</a>
+    </footer>
+  </main>
+  <script>
+    setTimeout(() => {
+      document.getElementById('introScreen').style.display = 'none';
+    }, 2500);
+  </script>
+</body>
+</html>
+
